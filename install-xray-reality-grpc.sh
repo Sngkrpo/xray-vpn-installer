@@ -5,7 +5,7 @@ SERVER_IP="${1:-}"
 PROFILE_NAME="${2:-VPN}"
 
 apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install -y curl ca-certificates openssl unzip
+DEBIAN_FRONTEND=noninteractive apt-get install -y curl ca-certificates openssl unzip python3
 
 if ! command -v /usr/local/bin/xray >/dev/null 2>&1; then
   bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install

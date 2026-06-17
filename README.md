@@ -21,10 +21,10 @@
 ssh root@IP_СЕРВЕРА
 ```
 
-Скачай и запусти скрипт:
+Скопируй и вставь команды на сервере. Вставлять можно одним блоком:
 
 ```bash
-curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/USERNAME/xray-vpn-installer/main/install-xray-reality-grpc.sh
+curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
 chmod +x install-xray-reality-grpc.sh
 ./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇺🇸 USA"
 ```
@@ -38,6 +38,12 @@ chmod +x install-xray-reality-grpc.sh
 После установки скрипт напечатает ссылку `vless://...`.
 Скопируй ее и импортируй в VPN-клиент.
 
+Важно: `IP_СЕРВЕРА` нужно заменить на настоящий IP. Например:
+
+```bash
+./install-xray-reality-grpc.sh 45.38.41.24 "🇫🇮 Finland"
+```
+
 ## Установка с телефона
 
 1. Установи Termius.
@@ -49,7 +55,7 @@ chmod +x install-xray-reality-grpc.sh
 3. Вставь команды:
 
 ```bash
-curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/USERNAME/xray-vpn-installer/main/install-xray-reality-grpc.sh
+curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
 chmod +x install-xray-reality-grpc.sh
 ./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇺🇸 USA"
 ```
@@ -82,7 +88,6 @@ active (running)
 
 ## Примечание
 
-В командах замени:
+В командах замени только `IP_СЕРВЕРА` на IP своего сервера.
 
-- `USERNAME` на имя GitHub-аккаунта;
-- `IP_СЕРВЕРА` на IP своего сервера.
+Если после `curl` скачалось всего `14` байт, значит ссылка неправильная и сервер скачал текст `404: Not Found`, а не скрипт.
