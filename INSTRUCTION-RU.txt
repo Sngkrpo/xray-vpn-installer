@@ -1,136 +1,89 @@
 ПРОСТАЯ ИНСТРУКЦИЯ: КАК УСТАНОВИТЬ XRAY VPN НА СЕРВЕР
 
-Самый простой способ - скачать скрипт прямо с GitHub на сервер.
-
 Репозиторий:
 https://github.com/Sngkrpo/xray-vpn-installer
 
 
 ЧТО НУЖНО ЗНАТЬ
 
-Перед установкой у тебя должны быть:
+Перед установкой нужны:
 
 1. IP сервера
-   Пример: 67.205.190.3
-
-2. Логин
-   Обычно: root
-
+2. Логин сервера, обычно root
 3. Пароль от сервера
-   Пример: K7!vQ9#rM2@zP6
+
+В инструкции ниже вместо IP_СЕРВЕРА всегда подставляй настоящий IP своего сервера.
+Не публикуй IP, пароль и готовую ссылку vless:// в открытом доступе.
 
 
-ШАГ 1. ОТКРЫТЬ ТЕРМИНАЛ НА КОМПЬЮТЕРЕ
+ШАГ 1. ЗАЙТИ НА СЕРВЕР
 
-На Mac:
-Открой приложение Terminal.
+Открой Terminal на Mac или PowerShell на Windows.
 
-На Windows:
-Открой PowerShell.
+Введи:
 
+ssh root@IP_СЕРВЕРА
 
-ШАГ 2. ЗАЙТИ НА СЕРВЕР
-
-Вместо IP_СЕРВЕРА подставь настоящий IP.
-
-Пример:
-
-ssh root@67.205.190.3
-
+Нажми Enter.
 Введи пароль от сервера.
 
-После входа ты окажешься внутри сервера.
+ВАЖНО:
+Когда вводишь пароль, символы могут не отображаться. Это нормально.
 
 
-ШАГ 3. СКАЧАТЬ И ЗАПУСТИТЬ УСТАНОВКУ
+ШАГ 2. СКАЧАТЬ И ЗАПУСТИТЬ УСТАНОВКУ
 
-На сервере вставь команды по очереди или одним блоком:
-
-curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
-chmod +x install-xray-reality-grpc.sh
-./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇺🇸 USA"
+Скопируй блок ниже и вставь его в терминал сервера.
 
 ВАЖНО:
-IP_СЕРВЕРА нужно заменить на настоящий IP.
+Команды должны быть на разных строках.
+Не вставляй все в одну строку.
 
-Пример для сервера 67.205.190.3:
+Перед запуском замени IP_СЕРВЕРА на IP своего сервера.
 
 curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
 chmod +x install-xray-reality-grpc.sh
-./install-xray-reality-grpc.sh 67.205.190.3 "🇺🇸 USA"
-
-Для сервера Германии:
-
-./install-xray-reality-grpc.sh 144.31.141.128 "🇩🇪 Germany"
-
-Для сервера Финляндии:
-
-./install-xray-reality-grpc.sh 45.38.41.24 "🇫🇮 Finland"
-
-Если у тебя другой IP, замени IP в команде на свой.
+./install-xray-reality-grpc.sh IP_СЕРВЕРА "Finland"
 
 
-ШАГ 4. ДОЖДАТЬСЯ КОНЦА УСТАНОВКИ
+ШАГ 3. ДОЖДАТЬСЯ КОНЦА УСТАНОВКИ
 
-Скрипт будет что-то устанавливать.
-Нужно просто ждать.
+Скрипт будет устанавливать Xray.
+На экране будет много текста.
+Ничего нажимать не нужно.
 
 В конце появится строка, которая начинается с:
 
 vless://
 
-Пример:
-
-vless://a05737f5-6652-4366-a724-1efe8698f21e@67.205.190.3:443?...
-
-ЭТО И ЕСТЬ ГОТОВАЯ ССЫЛКА ДЛЯ VPN.
-
 Скопируй всю строку полностью.
+Это готовая ссылка для VPN-клиента.
 
 
-ШАГ 5. ДОБАВИТЬ VPN В ПРИЛОЖЕНИЕ
+ШАГ 4. ДОБАВИТЬ VPN В ПРИЛОЖЕНИЕ
 
 Открой VPN-клиент.
 
 Найди кнопку:
 
-Import
+Import from clipboard
 
 или:
 
-Import from clipboard
+Import URL
 
 или:
 
 Импорт из буфера обмена
 
-Вставь ссылку vless://...
-
+Вставь ссылку vless://
 Сохрани профиль.
 Включи подключение.
 
 
-ЕСЛИ НУЖНО ЗАПОЛНИТЬ ВРУЧНУЮ
+КАК ПРОВЕРИТЬ СЕРВЕР
 
-В клиенте должны быть такие настройки:
-
-Protocol: VLESS
-Address: IP сервера
-Port: 443
-Network: gRPC
-Service name: stage
-TLS: Reality
-Fingerprint: Safari
-Server name: www.samsung.com
-Flow: пусто
-SpiderX: пусто
-
-UUID, Public key и Short ID брать из вывода скрипта.
-
-
-КАК ПРОВЕРИТЬ, ЧТО НА СЕРВЕРЕ ВСЕ РАБОТАЕТ
-
-На сервере напиши:
+На сервере введи:
 
 systemctl status xray --no-pager
 
@@ -147,290 +100,49 @@ ss -lntp | grep ':443'
 Если видишь строку с xray и 443, значит порт работает.
 
 
-ЕСЛИ ЧТО-ТО НЕ ПОЛУЧИЛОСЬ
+ЧАСТЫЕ ОШИБКИ
 
-1. Если не входит по SSH:
+1. Ошибка:
+Could not resolve host: chmod
+
+Причина:
+Ты вставил все команды в одну строку.
+
+Решение:
+Вставь команды снова, но с переносами строк:
+
+curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
+chmod +x install-xray-reality-grpc.sh
+./install-xray-reality-grpc.sh IP_СЕРВЕРА "Finland"
+
+
+2. После curl скачалось 14 байт
+
+Причина:
+Скачался текст 404: Not Found, а не скрипт.
+
+Решение:
+Проверь, что ссылка такая:
+
+https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
+
+
+3. Не входит по SSH
+
 Проверь IP, логин и пароль.
 
-2. Если пишет Permission denied:
-Пароль неверный или вход не под root.
 
-3. Если VPN не подключается:
+4. VPN не подключается
+
 Проверь в клиенте:
-- Network именно gRPC
-- Service name именно stage
-- TLS именно Reality
-- Fingerprint именно Safari
-- Server name именно www.samsung.com
-- Flow пустой
 
-4. Если curl скачал только 14 байт:
-Значит скачался текст 404: Not Found, а не скрипт.
-Проверь, что команда скачивания такая:
-
-curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
-
-5. Если надо заново создать ссылку:
-Просто запусти скрипт еще раз:
-
-./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇺🇸 USA"
-
-Старая ссылка после этого уже не нужна, используй новую.
-
-
-САМЫЙ КОРОТКИЙ ПРИМЕР ДЛЯ США
-
-На компьютере зайди на сервер:
-
-ssh root@67.205.190.3
-
-На сервере:
-
-curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
-chmod +x install-xray-reality-grpc.sh
-./install-xray-reality-grpc.sh 67.205.190.3 "🇺🇸 USA"
-
-Потом скопировать строку vless://... и импортировать в приложение.
-
-
-УСТАНОВКА С ТЕЛЕФОНА
-
-Если компьютера нет, VPN можно поставить прямо с телефона.
-
-На телефоне понадобится два приложения:
-
-1. SSH-приложение для входа на сервер
-   iPhone: Termius
-   Android: Termius или JuiceSSH
-
-2. VPN-клиент для VLESS/Xray
-   iPhone: Streisand, FoXray, V2Box или другое приложение с VLESS Reality
-   Android: v2rayNG или другое приложение с VLESS Reality
-
-
-ВАРИАНТ С ТЕЛЕФОНА ЧЕРЕЗ TERMIUS
-
-ШАГ 1. Установить Termius
-
-Открой App Store или Google Play.
-Найди Termius.
-Установи приложение.
-
-
-ШАГ 2. Добавить сервер в Termius
-
-Открой Termius.
-Нажми New Host или плюс.
-
-Заполни:
-
-Alias: любое название, например USA Server
-Host: IP сервера
-Port: 22
-Username: root
-Password: пароль от сервера
-
-Пример:
-
-Host: 67.205.190.3
-Port: 22
-Username: root
-Password: пароль сервера
-
-Сохрани сервер.
-
-
-ШАГ 3. Подключиться к серверу
-
-Нажми на созданный сервер.
-
-Если появится вопрос про fingerprint/key, нажми:
-
-Continue
-
-или:
-
-Accept
-
-После этого откроется черный экран терминала.
-Это значит, что ты внутри сервера.
-
-
-ШАГ 4. Создать файл скрипта на сервере
-
-В Termius вставь команду:
-
-nano install-xray-reality-grpc.sh
-
-Откроется редактор nano.
-
-Теперь нужно вставить текст скрипта install-xray-reality-grpc.sh.
-
-Если текст скрипта у тебя открыт в заметках или файле:
-- выдели весь текст;
-- скопируй;
-- вернись в Termius;
-- вставь в nano.
-
-ВАЖНО:
-Вставка может занять несколько секунд. Подожди, пока весь текст появится.
-
-
-ШАГ 5. Сохранить файл в nano
-
-В Termius внизу обычно есть дополнительная клавиатура с кнопкой Ctrl.
-
-Нужно нажать:
-
-Ctrl + O
-
-Потом:
-
-Enter
-
-Потом выйти:
-
-Ctrl + X
-
-Если не видишь Ctrl:
-- открой дополнительную клавиатуру Termius;
-- найди кнопку Ctrl;
-- или нажми кнопку Keyboard / Special keys.
-
-
-ШАГ 6. Запустить установку
-
-После выхода из nano ты снова увидишь командную строку сервера.
-
-Напиши:
-
-chmod +x install-xray-reality-grpc.sh
-
-Потом запусти скрипт.
-
-Для США:
-
-./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇺🇸 USA"
-
-Пример:
-
-./install-xray-reality-grpc.sh 67.205.190.3 "🇺🇸 USA"
-
-Для Германии:
-
-./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇩🇪 Germany"
-
-Пример:
-
-./install-xray-reality-grpc.sh 144.31.141.128 "🇩🇪 Germany"
-
-
-ШАГ 7. Дождаться конца установки
-
-Скрипт начнет установку.
-На экране будет много текста.
-Ничего нажимать не нужно.
-
-В конце появится строка:
-
-vless://...
-
-Скопируй всю строку полностью.
-
-ВАЖНО:
-Нужно скопировать именно всю ссылку, начиная с vless:// и до самого конца.
-
-
-ШАГ 8. Импортировать ссылку в VPN-клиент
-
-Открой VPN-клиент.
-
-Найди кнопку:
-
-Import from clipboard
-
-или:
-
-Import URL
-
-или:
-
-Импорт из буфера обмена
-
-Если такой кнопки нет:
-- нажми плюс;
-- выбери Import;
-- вставь ссылку vless:// вручную.
-
-Сохрани профиль.
-Включи подключение.
-
-
-ЕСЛИ С ТЕЛЕФОНА НЕ ПОЛУЧАЕТСЯ ВСТАВИТЬ СКРИПТ
-
-Можно сделать проще:
-
-1. Открой файл install-xray-reality-grpc.sh на компьютере.
-2. Скопируй весь текст.
-3. Отправь себе в Telegram / WhatsApp / Заметки.
-4. Открой этот текст на телефоне.
-5. Скопируй весь текст с телефона.
-6. Вставь в Termius после команды:
-
-nano install-xray-reality-grpc.sh
-
-
-КАК ПОНЯТЬ, ЧТО ВСЕ УСТАНОВИЛОСЬ
-
-На сервере в Termius напиши:
-
-systemctl status xray --no-pager
-
-Если видишь:
-
-active (running)
-
-значит VPN работает.
-
-Проверить порт:
-
-ss -lntp | grep ':443'
-
-Если видишь строку с xray и 443, значит сервер слушает VPN-порт.
-
-
-ЧАСТЫЕ ПРОБЛЕМЫ НА ТЕЛЕФОНЕ
-
-Проблема: пароль вводится, но его не видно.
-
-Это нормально. В SSH пароли обычно не показываются.
-Просто введи пароль и нажми Enter.
-
-Проблема: Permission denied.
-
-Значит неверный пароль, неверный логин или вход root отключен.
-Проверь данные сервера.
-
-Проблема: в nano не получается сохранить.
-
-Нужно:
-
-Ctrl + O
-Enter
-Ctrl + X
-
-Проблема: VPN-клиент не подключается.
-
-Проверь настройки:
-
+Protocol: VLESS
 Network: gRPC
+Security/TLS: Reality
+Port: 443
 Service name: stage
-TLS: Reality
 Fingerprint: Safari
-Server name: www.samsung.com
+Server name/SNI: www.samsung.com
 Flow: пусто
 
-Проблема: ссылка vless:// не копируется целиком.
-
-Попробуй выделить строку длинным нажатием.
-Если строка переносится на несколько строк, копировать все равно нужно от vless:// до самого конца.
+UUID, Public key и Short ID бери из вывода скрипта.

@@ -15,34 +15,32 @@
 
 ## Быстрая установка
 
-Зайди на сервер по SSH:
+1. Зайди на сервер по SSH:
 
 ```bash
 ssh root@IP_СЕРВЕРА
 ```
 
-Скопируй и вставь команды на сервере. Вставлять можно одним блоком:
+2. Скопируй блок ниже и вставь его в терминал сервера.
+
+Важно: команды должны быть на разных строках. Не склеивай их в одну строку.
+
+Перед запуском замени `IP_СЕРВЕРА` на IP своего сервера.
 
 ```bash
 curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
 chmod +x install-xray-reality-grpc.sh
-./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇺🇸 USA"
+./install-xray-reality-grpc.sh IP_СЕРВЕРА "Finland"
 ```
 
-Для Германии:
+Можно поменять название профиля:
 
 ```bash
-./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇩🇪 Germany"
+./install-xray-reality-grpc.sh IP_СЕРВЕРА "Germany"
 ```
 
 После установки скрипт напечатает ссылку `vless://...`.
 Скопируй ее и импортируй в VPN-клиент.
-
-Важно: `IP_СЕРВЕРА` нужно заменить на настоящий IP. Например:
-
-```bash
-./install-xray-reality-grpc.sh 45.38.41.24 "🇫🇮 Finland"
-```
 
 ## Установка с телефона
 
@@ -52,12 +50,14 @@ chmod +x install-xray-reality-grpc.sh
    - Port: `22`
    - Username: `root`
    - Password: пароль сервера
-3. Вставь команды:
+3. Вставь команды ниже.
+
+Важно: команды должны быть на разных строках. Не вставляй все в одну строку.
 
 ```bash
 curl -L -o install-xray-reality-grpc.sh https://raw.githubusercontent.com/Sngkrpo/xray-vpn-installer/main/install-xray-reality-grpc.sh
 chmod +x install-xray-reality-grpc.sh
-./install-xray-reality-grpc.sh IP_СЕРВЕРА "🇺🇸 USA"
+./install-xray-reality-grpc.sh IP_СЕРВЕРА "Finland"
 ```
 
 4. Скопируй ссылку `vless://...` из вывода.
@@ -91,3 +91,5 @@ active (running)
 В командах замени только `IP_СЕРВЕРА` на IP своего сервера.
 
 Если после `curl` скачалось всего `14` байт, значит ссылка неправильная и сервер скачал текст `404: Not Found`, а не скрипт.
+
+Если видишь ошибки вида `Could not resolve host: chmod`, значит команды были вставлены одной строкой. Вставь блок еще раз, но с переносами строк.
